@@ -1,46 +1,52 @@
-body {
+body{
     margin: 0;
     display: flex;
+    background-color: #1E1E1E;
     flex-direction: column; /* Вертикальная ориентация для меню и категорий */
     align-items: center; /* Центрируем по горизонтали */
     height: 100vh; /* Высота на весь экран */
-    background-color: #1E1E1E; /* Цвет фона для лучшего восприятия */
 }
-
-.menu {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%; /* Изменено на 100% для адаптивности */
-    height: 70px; /* Высота меню */
+.container {
+    display: flex; /* Включаем flexbox */
+    flex-direction: column; /* Вертикальная ориентация */
+    align-items: center; /* Центрируем элементы по горизонтали */
+    margin: 0px 360px; /* Отступы по бокам */
+}
+.header{
+    position: flex;
     background: #1a1a1a;
+    width: 100%;
+    height: 124px;
+}
+.header-line{
+    padding-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.menu1 {
-    display: flex; /* Используем Flexbox для выравнивания элементов в строку */
-    justify-content: center; /* Центрируем содержимое по горизонтали */
-    align-items: center; /* Центрируем элементы по вертикали */
-    height: 100%; /* Занимаем всю высоту меню */
-}
-
-.butt {
-    display: flex; /* Используем Flexbox для выравнивания элементов в строку */
-    align-items: center; /* Центрируем элементы по вертикали */
+.general-batton{
+    color:#D1D1D1;
+    text-decoration: none;
     font: 400 14px "Inter", sans-serif;
-    color: rgb(255, 255, 255);
-    opacity: 70%;
+    margin-left: 25px;
+    margin-right: 25px;
 }
-
-.butt p {
-    margin-left: 30px; /* Отступ между элементами текста */
+.general-palk{
+    border: 1px solid rgba(130, 130, 130, 0.5);
+    width: 0px;
+    height: 16px;
 }
-
-.search-container {
-    position: relative; /* Позволяет позиционировать дочерние элементы относительно этого контейнера */
-    margin-left: 30px; /* Отступ между кнопками и полем ввода */
+.menu{
+    display: flex;
+    margin-left: 25px;
+    margin-right: 25px;
 }
-
-.search-input {
+.poisk-c{
+    position: relative;
+    margin-right: 25px;
+}
+.poisk{
     padding: 10px; /* Внутренние отступы для удобства ввода текста */
     border: none; /* Убираем стандартную рамку */
     border-radius: 8px; /* Закругляем углы поля ввода */
@@ -48,10 +54,9 @@ body {
     color: white; /* Цвет текста в поле ввода */
     font-size: 14px; /* Размер шрифта */
     width: 400px;
-    padding-right: 40px; /* Увеличиваем отступ справа, чтобы текст не накладывался на иконку */
+    padding-right: 120px;
 }
-
-.search-icon {
+.poisk-icon {
     position: absolute; /* Абсолютное позиционирование для размещения иконки внутри поля ввода */
     right: 10px; /* Позиция иконки справа */
     top: 50%; /* Центрируем иконку по вертикали */
@@ -59,29 +64,17 @@ body {
     width: 18px; /* Ширина иконки, можно изменить по желанию */
     height: auto; /* Автоматическая высота для сохранения пропорций */
 }
-
-.additional-icon {
-    margin-left: 30px;
+.menu-icon{
+    margin-left: 25px;
+}
+.icon-menu{
+    display: flex;
 }
 
-.categories {
-    display: flex; /* Используем Flexbox для размещения кнопок в строку */
-    flex-wrap: wrap; /* Позволяет кнопкам переноситься на следующую строку при нехватке места */
-    justify-content: center; /* Центрируем кнопки по горизонтали */
-    background-color: #1a1a1a; /* Фон для контейнера с категориями */
-    padding: 20px; /* Отступы вокруг кнопок */
-}
-
-.category-button {
-    background-color: #1a1a1a; /* Цвет фона кнопок */
-    color: rgb(197, 197, 197); /* Цвет текста кнопок */
-    border: none; /* Убираем стандартную рамку кнопок */
-    border-radius: 2px; /* Закругляем углы кнопок */
-    padding: none; /* Внутренние отступы для кнопок */
-    margin: 6px; /* Отступ между кнопками */
-    cursor: pointer; /* Курсор при наведении на кнопки */
-}
-
-.category-button:hover {
-    color: #ffffff; /* Цвет фона кнопок при наведении */
+.palka {
+    border-top: 1px solid rgba(130, 130, 130, 0.5); /* Создаем линию */
+    width: 100%; /* Занимаем всю ширину родительского контейнера */
+    max-width: 1200px; /* Максимальная ширина линии */
+    height: 0; /* Высота линии равна нулю */
+    margin-top: 14px; /* Отступ сверху */
 }
