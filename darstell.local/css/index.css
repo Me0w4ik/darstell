@@ -1,0 +1,288 @@
+body{
+    background-color: #1E1E1E;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Вертикальная ориентация для меню и категорий */
+    align-items: center; /* Центрируем по горизонтали */
+    height: 100vh; /* Высота на весь экран */
+}
+
+@font-face {
+    font-family: 'inter';
+    src: url('fonts/Inter-ExtraLight.otf') format('truetype');
+  }
+.container-menu{
+    display: flex; /* Включаем flexbox */
+    flex-direction: column; /* Вертикальная ориентация */
+    margin: 0 auto; /* Центрируем контейнер по горизонтали */
+    max-width: 1200px;
+}
+@media (max-width: 1220px) {
+    .container-menu {
+        margin: 0 20px;
+        max-width: auto;
+    }
+}
+.header{
+    position: fixed;
+    width: 100%;
+    height: auto;
+    backdrop-filter: blur(50px);
+    background: rgba(22, 22, 22, 0.7);
+    z-index: 1;
+}
+.header-line{
+    padding-top: 20px;
+    display: flex;
+    gap: 26px;
+    align-items: center;
+    justify-content: center;
+}
+.header-line2{
+    padding-top: 16px;
+    display: flex;
+    gap: 26px;
+    align-items: center;
+}
+
+.battons{
+    justify-content: center;
+    display: flex;
+    gap: 29px;
+    color:#D1D1D1;
+}
+.batton-oboi, 
+.batton-priroda, 
+.batton-3D,
+.batton-textura,
+.batton-intereri,
+.batton-4k,
+.batton-filmi,
+.batton-ludi,
+.batton-zoo,
+.batton-game,
+.batton-moda,
+.batton-eda{
+    position: relative; /* Устанавливаем позицию для псевдоэлемента */
+    color: #D1D1D1;
+    text-decoration: none;
+    font: 400 14px "Inter", sans-serif;
+    margin-bottom: 20px;
+}
+
+.batton-oboi::after,
+.batton-priroda::after,
+.batton-3D::after,
+.batton-textura::after,
+.batton-intereri::after,
+.batton-4k::after,
+.batton-filmi::after,
+.batton-ludi::after,
+.batton-zoo::after,
+.batton-game::after,
+.batton-moda::after,
+.batton-eda::after{
+    content: ""; /* Создаем пустой контент для псевдоэлемента */
+    position: absolute; /* Абсолютное позиционирование */
+    left: 0px;
+    bottom: -20px; /* Позиционируем чуть ниже текста */
+    width: 100%; /* Ширина подчеркивания */
+    height: 2px; /* Высота подчеркивания */
+    background-color: #FFFFFF; /* Цвет подчеркивания */
+    transform: scaleX(0); /* Изначально скрываем подчеркивание */
+    transition: transform 0.1s ease; /* Плавный переход */
+}
+
+.batton-oboi:hover::after, 
+.batton-priroda:hover::after,
+.batton-3D:hover::after,
+.batton-textura:hover::after,
+.batton-intereri:hover::after,
+.batton-4k:hover::after,
+.batton-filmi:hover::after,
+.batton-ludi:hover::after,
+.batton-zoo:hover::after,
+.batton-game:hover::after,
+.batton-moda:hover::after,
+.batton-eda:hover::after{
+    transform: scaleX(1); /* Показываем подчеркивание при наведении */
+}
+.batton-oboi:hover,
+.batton-priroda:hover,
+.batton-3D:hover,
+.batton-textura:hover,
+.batton-intereri:hover,
+.batton-4k:hover,
+.batton-filmi:hover,
+.batton-ludi:hover,
+.batton-zoo:hover,
+.batton-game:hover,
+.batton-moda:hover,
+.batton-eda:hover{
+    color: #FFFFFF; /* Изменение цвета текста при наведении */
+}
+
+.general-palk{
+    border: 1px solid rgba(130, 130, 130, 0.5);
+    width: 0px;
+    height: 16px;
+}
+
+.logo-menu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.menu-icon{
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    justify-content: center;
+}
+.menu-icon-upload, .menu-icon-arhiv, .menu-icon-account{
+    stroke: #D1D1D1;
+}
+.menu-icon-upload:hover, .menu-icon-arhiv:hover, .menu-icon-account:hover {
+    stroke: #FFFFFF;
+}
+.menu-icon-upload:active,.menu-icon-arhiv:active,.menu-icon-account:active {
+    stroke: #333333;
+}
+.poisk-c {
+    position: relative;
+    flex-grow: 1; /* Позволяет контейнеру занимать доступное пространство */
+    min-width: 100px; /* Ограничиваем максимальную ширину контейнера */
+}
+
+.poisk {
+    padding: 10px 38px 10px 10px;
+    border: none; /* Убираем стандартную рамку */
+    border-radius: 8px; /* Закругляем углы поля ввода */
+    background: rgba(45, 45, 45, 0.5);
+    color: white; /* Цвет текста в поле ввода */
+    font-size: 14px; /* Размер шрифта */
+    width: 100%; /* Задаем ширину 100% от родительского контейнера */
+    box-sizing: border-box; /* Учитываем отступы и границы в ширине */
+    outline: 0;
+}
+
+.poisk-icon {
+    position: absolute; /* Абсолютное позиционирование для размещения иконки внутри поля ввода */
+    right: 10px; /* Позиция иконки справа */
+    top: 50%; /* Центрируем иконку по вертикали */
+    transform: translateY(-50%); /* Сдвигаем иконку на половину ее высоты для точного центрирования */
+    width: 18px; /* Ширина иконки, можно изменить по желанию */
+    height: auto; /* Автоматическая высота для сохранения пропорций */
+}
+
+.parent-container {
+    display: flex;
+    justify-content: center; /* Центрируем содержимое по горизонтали */
+}
+
+.palka {
+    border-top: 1px solid rgba(130, 130, 130, 0.5); /* Создаем линию */
+    width: 100%; /* Занимаем всю ширину родительского контейнера */
+    min-width: 446px; /* Минимальная ширина линии */
+    height: 0; /* Высота линии равна нулю */
+    margin-top: 14px; /* Отступ сверху */
+}
+@media (max-width: 1220px) {
+    .battons, .general-palk, .parent-container{
+        display: none;
+    }
+}
+.icon-background{
+    margin-top: 140px;
+    display: grid; /* Используем Flexbox */
+    align-content: center;
+    justify-items: center;
+    align-items: center; /* Центрируем по вертикали */
+    width: 1200px; /* Ширина контейнера */
+    height: 300px; /* Высота контейнера */
+    border-radius: 10px;
+    background-image: url('darstell.jpg'); /* Устанавливаем изображение фона */
+    background-size: cover; /* Растягиваем изображение, сохраняя пропорции */
+    background-position: center; /* Центрируем изображение */
+    margin-bottom: 16px;
+    font: 400 14px "Inter", sans-serif;
+    color: white;
+}
+@media (max-width: 1220px) {
+    .icon-background{
+        margin-top: 90px;
+        width: 100%;
+    }
+}
+.icon-darstell{
+    display: flex;
+    width: auto;
+    height: auto;
+}
+.icon-background-text{
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+}
+
+
+.grid-container {
+    columns: 3 200px;
+    column-gap: 12px;
+}
+
+.grid-item {
+    margin: 6px 0;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.grid-item:hover {
+    transform: scale(104%);
+}
+
+
+@media (max-width: 720px) {
+    .icon-background-text{
+        font-size: 8px;
+    }
+    .icon-darstell{
+        width: 50%;
+    }
+    .container-menu{
+        margin: 0;
+    }
+    .icon-background{
+        border-radius: 0;
+        margin-top: 76px;
+    }
+    .header-line{
+        margin: 0 20px;
+    }
+    .grid-container{
+        margin: 0 20px;
+    }
+    
+}
+@media (max-width: 600px) {
+    .icon-background{
+        height: 130px;
+        margin-top: 110px;
+    }
+    .header{
+        height: 110px;
+    }
+    .header-line{
+        justify-content: space-between;
+    }
+    .poisk-c{
+        top: 60px;
+        position: absolute;
+        left: 20px; 
+        right: 20px; 
+        width: calc(100% - 40px); 
+    }
+}
