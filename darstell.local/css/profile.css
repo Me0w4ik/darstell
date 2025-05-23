@@ -1,0 +1,377 @@
+body{
+    background-color: #1E1E1E;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Вертикальная ориентация для меню и категорий */
+    align-items: center; /* Центрируем по горизонтали */
+    height: 100vh; /* Высота на весь экран */
+}
+main{
+    width: 100%;
+}
+@font-face {
+    font-family: 'inter';
+    src: url('fonts/Inter-ExtraLight.otf') format('truetype');
+}
+.container-menu{
+    display: flex; /* Включаем flexbox */
+    flex-direction: column; /* Вертикальная ориентация */
+    margin: 0 auto; /* Центрируем контейнер по горизонтали */
+    max-width: 1200px;
+}
+.container-menu2{
+    display: flex; /* Включаем flexbox */
+    flex-direction: column; /* Вертикальная ориентация */
+    margin: 0 auto; /* Центрируем контейнер по горизонтали */
+    max-width: 1200px;
+}
+@media (max-width: 1220px) {
+    .container-menu {
+        margin: 0 20px;
+        max-width: auto;
+    }
+    .container-menu2 {
+        margin: 0 20px;
+        max-width: auto;
+    }
+}
+header{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.header{
+    position: fixed;
+    width: 100%;
+    backdrop-filter: blur(50px);
+    background: rgba(22, 22, 22, 0.7);
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+.header-line{
+    padding: 20px 0;
+    display: flex;
+    gap: 26px;
+    align-items: center;
+    justify-content: center;
+}
+.header-line2{
+    padding-top: 16px;
+    display: flex;
+    gap: 26px;
+    align-items: center;
+}
+.logo-menu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.menu-icon{
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    justify-content: center;
+}
+.menu-icon-upload, .menu-icon-account{
+    stroke: #D1D1D1;
+    display: flex;
+}
+.menu-icon-upload:hover, .menu-icon-account:hover {
+    stroke: #FFFFFF;
+}
+.menu-icon-upload:active, .menu-icon-account:active {
+    stroke: #333333;
+}
+
+.poisk-c {
+    position: relative;
+    flex-grow: 1; /* Позволяет контейнеру занимать доступное пространство */
+    min-width: 100px; /* Ограничиваем максимальную ширину контейнера */
+}
+.poisk-b{
+    cursor: pointer;
+    display: flex;
+}
+.poisk-b path{
+    fill: #D1D1D1;
+}
+.poisk-b:hover path{
+    fill: white;
+}
+
+.poisk {
+    padding: 10px 38px 10px 10px;
+    border: none; /* Убираем стандартную рамку */
+    border-radius: 8px; /* Закругляем углы поля ввода */
+    background: rgba(45, 45, 45, 0.5);
+    color: white; /* Цвет текста в поле ввода */
+    font-size: 14px; /* Размер шрифта */
+    width: 100%; /* Задаем ширину 100% от родительского контейнера */
+    box-sizing: border-box; /* Учитываем отступы и границы в ширине */
+    outline: 0;
+    transition: all 0.3s ease;
+}
+#poiskc::placeholder {
+    color: rgb(175, 175, 175);
+}
+.blur{
+    backdrop-filter: blur(50px);
+    background: rgb(22 22 22 / 27%);
+}
+input {outline: none;}
+
+.invincible {
+    width: 230px;
+    padding: 0 20px;
+    border-radius: 30px;
+    margin-top: 10px;
+    background: rgba(22, 22, 22, 0.4);
+}
+.zone {
+    width: 420px;
+}
+.buttonpoisk{
+    border: 0;
+    background-color: #00000000;
+    position: absolute; /* Абсолютное позиционирование для размещения иконки внутри поля ввода */
+    right: 20px; /* Позиция иконки справа */
+    top: 50%; /* Центрируем иконку по вертикали */
+    transform: translateY(-50%); /* Сдвигаем иконку на половину ее высоты для точного центрирования */
+    width: 18px; /* Ширина иконки, можно изменить по желанию */
+    height: auto; /* Автоматическая высота для сохранения пропорций */
+}
+
+.poisk-icon {
+    position: absolute; /* Абсолютное позиционирование для размещения иконки внутри поля ввода */
+    top: 50%; /* Центрируем иконку по вертикали */
+    transform: translateY(-50%); /* Сдвигаем иконку на половину ее высоты для точного центрирования */
+    width: 18px; /* Ширина иконки, можно изменить по желанию */
+    height: auto; /* Автоматическая высота для сохранения пропорций */
+    fill: #D1D1D1;
+    cursor: pointer;
+}
+
+.poisk-icon:hover {
+    fill: white;
+}
+
+.profile {
+    height: auto;
+    display: grid;                           /* Включаем Flexbox */                /* Центрируем содержимое по горизонтали */
+    margin-top: 94px;
+    justify-items: center;
+}
+
+.profile-fon1{
+    background: #2b2b2b;
+    width: 100%;
+    height: 166px;
+    border-radius: 10px 10px 0px 0px;
+}
+.profile-avatar{
+    width: 150px;
+    height: 150px;
+    background-color: #2b2b2b;
+    position: absolute;
+    object-fit: cover;
+    border-radius: 40%;
+    margin-top: 80px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.profile2{
+    display: grid;
+    justify-content: center;
+}
+.profile-fon2{
+    width: 100%;
+    height: auto;
+    box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background: #212121;
+    border-radius: 0px 0px 10px 10px;
+    margin-bottom: 20px;
+}
+.profile-settings-cont{
+    display: flex;
+    justify-content: flex-end;
+    
+}
+.profile-settings{
+    border-radius: 6px;
+    fill: #D1D1D1;
+    padding: 10px 10px 10px 10px;
+}
+.profile-settings:hover{
+    fill: #fff;
+}
+
+.profile-info{
+    display: flex;
+    justify-items: center;
+    padding-top: 10px;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    gap: 14px;
+    margin: 40px 10px 10px 10px;
+}
+.profile-nik{
+    font: 300 20px "Inter", sans-serif;
+    color: #fff;
+    margin: 0px;
+    align-items: center;
+}
+.profile-palka{
+    border-top: 1px solid rgba(130, 130, 130, 0.5);
+    width: 90%;
+    min-width: 10px;
+    height: 0;
+}
+.profile-opisanie {
+    display: flex;
+    font: 400 16px "Inter", sans-serif;
+    color: #fff;
+    margin: 0px;
+    text-align: center;
+}
+
+
+
+.profile-exit{
+    display: flex;
+    font: 400 16px "Inter", sans-serif;
+    color: #fff;
+    margin: 4px;
+    align-items: center;
+    border-radius: 6px;
+    width: auto;
+    height: 25px;
+    background: rgba(22, 22, 22, 0.7);;
+    padding: 4px;
+    text-decoration: none;
+}
+.upload-img{
+    display: flex;
+    border-radius: 10px;
+    background: #212121;
+    width: auto;
+    padding: 20px;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: all 3s ease;
+}
+input[type="file"] {
+    display: none;
+}
+
+
+
+.uploadsvg{
+    display: grid;
+    max-height: 52px;
+}
+
+.uploadsvg1, .uploadsvg2{
+    width: 40px;
+    height: 40px;
+}
+.uploadsvg1{
+    margin-bottom: -50px;
+}
+.uploadsvg2{
+    margin-bottom: 10px;
+}
+@keyframes chill {
+    0%, 100% {
+        margin-top: 0px; /* Начальное и конечное положение */
+    }
+    50% {
+        margin-top: -10px; /* Положение в середине анимации */
+    }
+}
+
+.upload-img:hover .uploadsvg1{
+    animation: chill 0.5s ease infinite;
+}
+
+
+.upload-img-text1 {
+    font: 200 28px "Inter", sans-serif;
+    text-align: left;
+    color: #7879e0;
+    margin: 0;
+    transition: all 0.3s;
+}
+
+.upload-img-text2 {
+    font: 300 16px "Inter", sans-serif;
+    text-align: left;
+    color: #fff;
+    margin: 0px;
+    transition: all 0.3s;
+}
+
+.disoff{
+    display: none;
+}
+
+
+
+
+
+
+.gridcontainer {
+    columns: 3 200px;
+    column-gap: 12px;
+}
+
+
+.grid-item {
+    margin: 6px 0;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.grid-item:hover {
+    filter: brightness(50%);
+}
+a{
+    text-decoration: none;
+}
+
+@media (max-width: 720px) {
+    .icon-background{
+        height: 130px;
+    }
+    .zone{
+        width: 260px;
+    }
+    .profile{
+        margin-top: 80px;
+    }
+    .header-line{
+        margin: 0 20px;
+    }
+    .upload-img-text1 {
+        font-size: 20px;
+    }
+    .upload-img-text2 {
+        font-size: 14px;
+    }
+    .profile-fon1{
+        height: 100px;
+    }
+    .profile-avatar{
+        margin-top: 20px;
+    }
+    .container-menu2{
+        margin: 0;
+    }
+    .container-menu{
+        margin: 0;
+    }
+}

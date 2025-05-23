@@ -1,0 +1,434 @@
+body{
+    background-color: #1E1E1E;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Вертикальная ориентация для меню и категорий */
+    align-items: center; /* Центрируем по горизонтали */
+    height: 100vh; /* Высота на весь экран */
+}
+@font-face {
+    font-family: 'inter';
+    src: url('fonts/Inter-ExtraLight.otf') format('truetype');
+}
+.container-menu{
+    display: flex; /* Включаем flexbox */
+    flex-direction: column; /* Вертикальная ориентация */
+    margin: 0 auto; /* Центрируем контейнер по горизонтали */
+    max-width: 1200px;
+}
+@media (max-width: 1220px) {
+    .container-menu {
+        margin: 0 20px;
+        max-width: auto;
+    }
+}
+header{
+    z-index: 2;
+    position: fixed;
+    width: 100%;
+    height: auto;
+    backdrop-filter: blur(50px);
+    background: rgba(22, 22, 22, 0.7);
+}
+.header-line{
+    padding: 20px 0;
+    display: flex;
+    gap: 26px;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-menu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.menu-icon{
+    display: flex;
+    gap: 24px;
+    align-items: flex-end;
+    justify-content: center;
+}
+.menu-icon-upload, .menu-icon-account{
+    stroke: #D1D1D1;
+    display: flex;
+}
+.menu-icon-upload:hover, .menu-icon-account:hover {
+    stroke: #FFFFFF;
+}
+.menu-icon-upload:active, .menu-icon-account:active {
+    stroke: #333333;
+}
+
+.poisk-c {
+    position: relative;
+    flex-grow: 1; /* Позволяет контейнеру занимать доступное пространство */
+    min-width: 100px; /* Ограничиваем максимальную ширину контейнера */
+}
+
+.poisk {
+    padding: 10px 38px 10px 10px;
+    border: none; /* Убираем стандартную рамку */
+    border-radius: 8px; /* Закругляем углы поля ввода */
+    background: rgba(45, 45, 45, 0.5);
+    color: white; /* Цвет текста в поле ввода */
+    font-size: 14px; /* Размер шрифта */
+    width: 100%; /* Задаем ширину 100% от родительского контейнера */
+    box-sizing: border-box; /* Учитываем отступы и границы в ширине */
+    outline: 0;
+}
+.buttonpoisk{
+    border: 0;
+    background-color: #00000000;
+    position: absolute; /* Абсолютное позиционирование для размещения иконки внутри поля ввода */
+    right: 20px; /* Позиция иконки справа */
+    top: 50%; /* Центрируем иконку по вертикали */
+    transform: translateY(-50%); /* Сдвигаем иконку на половину ее высоты для точного центрирования */
+    width: 18px; /* Ширина иконки, можно изменить по желанию */
+    height: auto; /* Автоматическая высота для сохранения пропорций */
+}
+
+.poisk-icon {
+    position: absolute; /* Абсолютное позиционирование для размещения иконки внутри поля ввода */
+    top: 50%; /* Центрируем иконку по вертикали */
+    transform: translateY(-50%); /* Сдвигаем иконку на половину ее высоты для точного центрирования */
+    width: 18px; /* Ширина иконки, можно изменить по желанию */
+    height: auto; /* Автоматическая высота для сохранения пропорций */
+    fill: #D1D1D1;
+    cursor: pointer;
+}
+.poisk-icon:hover {
+    fill: white;
+}
+#poiskc::placeholder {
+    color: rgb(175, 175, 175);
+}
+.menu-account {
+    width: 100%;
+    height: 90%;
+    display: grid;                           /* Включаем Flexbox */
+    align-content: center;
+    justify-items: center;
+    z-index: 1;
+}
+
+
+.name-operation {
+    font: 100 34px "Inter", sans-serif;     /* Шрифт */
+    text-align: center;                      /* Центрируем текст внутри элемента */
+    color: #fff;                             /* Цвет текста */
+}
+.data{
+    border-radius: 10px;
+    width: 100%;
+    height: 335px;
+    background: #151515;
+    padding: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+.form {
+    display: grid;
+    justify-items: center;
+    margin-top: 20px;
+    background-color: #151515;
+    border-radius: 20px;
+    padding: 24px;
+    width: 526px;
+    gap: 16px;
+}
+
+
+.title {
+    color: #eee;
+    font-size: 36px;
+    font-weight: 600;
+    margin-top: 30px;
+}
+
+.subtitle {
+    color: #eee;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+    font: 400 14px "Inter", sans-serif;
+    border-radius: 12px;
+    border: 1px solid #1e1e1e;
+    transition: border 0.5s;
+}
+.inputred{
+    border: 1px solid rgb(255, 110, 110) !important;
+}
+
+.input {
+    padding: 10px; /* Внутренние отступы для удобства ввода текста */
+    border: 1px solid #1e1e1e; /* Убираем стандартную рамку */
+    border-radius: 12px; /* Закругляем углы поля ввода */
+    background-color: #1e1e1e; /* Цвет фона поля ввода */
+    color: white; /* Цвет текста в поле ввода */
+    font-size: 18px; /* Размер шрифта */
+    height: 62px;
+    outline: 0;
+    padding: 4px 20px 0;
+    width: 100%; /* Задаем ширину 100% от родительского контейнера */
+    box-sizing: border-box; /* Учитываем отступы и границы в ширине */
+}
+
+input {outline: none;}
+input:-webkit-autofill {
+    -webkit-box-shadow: inset 0 0 0 50px #1e1e1e !important;
+    -webkit-text-fill-color: white;
+}
+
+.placeholder {
+    color: #a5a5a5;
+    left: 14px;
+    top: 16px;
+    background: #1e1e1e;
+    padding: 6px;
+    border-radius: 12px;
+    pointer-events: none;
+    position: absolute;
+    transform-origin: 0 50%;
+    transition: transform 0.3s, color 0.3s, background 0.3s, padding 0.3s, border-radius 0.3s, stroke 0.3s;
+}
+
+.placeholder:focus{
+    stroke: #7879e0;
+}
+
+.input:focus ~ .placeholder,
+.input:not(:placeholder-shown) ~ .placeholder {
+    transform: translateY(-34px) translateX(2px) scale(0.75);
+
+    color: #808097;
+    background: #151515;
+    padding: 6px;
+    border-radius: 12px;
+}
+
+    .input:focus ~ .placeholder {
+    color: #7879e0;
+    background: #151515;
+    padding: 10px;
+    border-radius: 12px;
+}
+.input-container:focus-within{
+    border: 1px solid #7879e0;
+}
+.telega{
+    display: flex;
+    margin: 40px 0;
+    position: relative;
+}
+.tgx {
+    width: 34px; /* Фиксированная ширина */
+    height: 34px; /* Фиксированная высота */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.tg, .tgd {
+    width: 100px; /* Ширина для элементов TG и TGD */
+    height: 100px; /* Высота для элементов TG и TGD */
+    position: absolute;
+    z-index: 1;
+}
+
+.tg {
+    top: -34px;
+    animation: tg 10s linear(0 0%, 0 1.8%, 0.01 3.6%, 0.03 6.35%, 0.07 9.1%, 0.13 11.4%, 0.19 13.4%, 0.27 15%, 0.34 16.1%, 0.54 18.35%, 0.66 20.6%, 0.72 22.4%, 0.77 24.6%, 0.81 27.3%, 0.85 30.4%, 0.88 35.1%, 0.92 40.6%, 0.94 47.2%, 0.96 55%, 0.98 64%, 0.99 74.4%, 1 86.4%, 1 100%) infinite;
+    z-index: 1;
+}
+
+.tgd {
+    top: -34px;
+    animation: tgd 10s linear(0 0%, 0 1.8%, 0.01 3.6%, 0.03 6.35%, 0.07 9.1%, 0.13 11.4%, 0.19 13.4%, 0.27 15%, 0.34 16.1%, 0.54 18.35%, 0.66 20.6%, 0.72 22.4%, 0.77 24.6%, 0.81 27.3%, 0.85 30.4%, 0.88 35.1%, 0.92 40.6%, 0.94 47.2%, 0.96 55%, 0.98 64%, 0.99 74.4%, 1 86.4%, 1 100%) infinite;
+    z-index: 0;
+}
+
+@keyframes tg {
+    0%, 100% {
+        left: -126px;
+        transform: scale(1);
+    }
+    25%, 85% {
+        left: -126px;
+        transform: scale(1);
+    }
+    40% {
+        left: -32px;
+        transform: scale(1.4);
+        z-index: 1;
+        
+    }
+    55% {
+        left: 60px;
+        transform: scale(1);
+        
+    }
+    70% {
+        left: -32px;
+        transform: scale(0.6);
+        z-index: 0;
+    }
+}
+@keyframes tgd {
+    0%, 100% {
+        left: 60px;
+        transform: scale(1);
+        
+    }
+    25%, 85% {
+        left: 60px;
+        transform: scale(1);
+    }
+    40% {
+        left: -32px;
+        transform: scale(0.6);
+    }
+    55% {
+        left: -126px;
+        transform: scale(1);
+    }
+    70% {
+        left: -32px;
+        transform: scale(1.4);
+    }
+}
+
+
+
+
+
+#ban{
+    text-align: center;
+    color: rgb(255, 110, 110);
+    width: auto;
+    padding: 0px 10px 0px 10px;
+    font: 100 14px "Inter", sans-serif;
+    margin: 0px;
+}
+
+.info-block {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+/* Анимация для появления с центра */
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Применяем анимацию при показе */
+.appear {
+    animation: appear 0.5s; /* Применяем анимацию появления */
+}
+
+.palka2 {
+    border-top: 1px solid rgba(130, 130, 130, 0.5); /* Создаем линию */
+    width: 95%; /* Занимаем всю ширину родительского контейнера */
+    height: 0; /* Высота линии равна нулю */
+}
+
+.submit {
+    font: 300 16px "Inter", sans-serif;
+    border-radius: 12px;
+    background-color: #00000000;
+    border: 1px solid #7879e0;
+    color: #eee;
+    cursor: pointer;
+    height: 64px;
+    text-align: center;
+    width: 100%;
+    transition: all 0.2s;
+}
+.submit:hover{
+    background-color: #1b1b1b;
+}
+
+.submit:active {
+    background-color: rgba(26, 26, 26, 0.81) ;
+}
+
+p {
+    margin-bottom: 0;
+}
+a, a:link, a:hover, a:visited {
+    color: #D1D1D1;
+    text-decoration: none;
+}
+    a:hover {
+    text-decoration: none;
+}
+
+.form-funks{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.form-reg{
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+.form-register{
+    display: flex;
+    border-radius: 4px;
+    padding: 4px 6px;
+    background: #7879e0;
+    font: 300 14px "Inter", sans-serif;
+    justify-content: center;
+    align-items: center;
+    color: black !important;
+}
+.form-register:hover{
+    background: #3d3e6e;
+}
+p{
+    margin-top: 0px;
+    color: white;
+    font: 300 16px "Inter", sans-serif;
+}
+
+@media (max-width: 600px) {
+    .form {
+        width: auto;
+    }
+    .name-operation{
+        font-size: 26px;
+    }
+    .menu-account{
+        justify-items: stretch;
+    }
+    .header{
+        height: 110px;
+    }
+}

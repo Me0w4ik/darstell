@@ -1,0 +1,348 @@
+body{
+    background-color: #1E1E1E;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Вертикальная ориентация для меню и категорий */
+    align-items: center; /* Центрируем по горизонтали */
+    height: 100vh; /* Высота на весь экран */
+    font-family: 'inter';
+    color: white;
+    font-size: 16px;
+}
+
+@font-face {
+    font-family: 'inter';
+    src: url('fonts/Inter-ExtraLight.otf') format('truetype');
+  }
+.container-menu{
+    display: flex; /* Включаем flexbox */
+    flex-direction: column; /* Вертикальная ориентация */
+    margin: 0 auto; /* Центрируем контейнер по горизонтали */
+    max-width: 1200px;
+    flex: 1;
+}
+@media (max-width: 1220px) {
+    .container-menu {
+        margin: 0 20px;
+        max-width: auto;
+    }
+}
+header{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.header{
+    position: fixed;
+    width: 100%;
+    backdrop-filter: blur(50px);
+    background: rgba(22, 22, 22, 0.7);
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+.poisk-c {
+    position: relative;
+    flex-grow: 1; /* Позволяет контейнеру занимать доступное пространство */
+    min-width: 100px; /* Ограничиваем максимальную ширину контейнера */
+}
+.poisk-b{
+    cursor: pointer;
+    display: flex;
+}
+.poisk-b path{
+    fill: #D1D1D1;
+}
+.poisk-b:hover path{
+    fill: white;
+}
+
+.poisk {
+    padding: 10px 38px 10px 10px;
+    border: none; /* Убираем стандартную рамку */
+    border-radius: 8px; /* Закругляем углы поля ввода */
+    background: rgba(45, 45, 45, 0.5);
+    color: white; /* Цвет текста в поле ввода */
+    font-size: 14px; /* Размер шрифта */
+    width: 100%; /* Задаем ширину 100% от родительского контейнера */
+    box-sizing: border-box; /* Учитываем отступы и границы в ширине */
+    outline: 0;
+    transition: all 0.3s ease;
+}
+#poiskc::placeholder {
+    color: rgb(175, 175, 175);
+}
+.blur{
+    backdrop-filter: blur(50px);
+    background: rgb(22 22 22 / 27%);
+}
+
+.buttonpoisk{
+    border: 0;
+    background-color: #00000000;
+    position: absolute; /* Абсолютное позиционирование для размещения иконки внутри поля ввода */
+    right: 20px; /* Позиция иконки справа */
+    top: 50%; /* Центрируем иконку по вертикали */
+    transform: translateY(-50%); /* Сдвигаем иконку на половину ее высоты для точного центрирования */
+    width: 18px; /* Ширина иконки, можно изменить по желанию */
+    height: auto; /* Автоматическая высота для сохранения пропорций */
+}
+
+.poisk-icon {
+    position: absolute; /* Абсолютное позиционирование для размещения иконки внутри поля ввода */
+    top: 50%; /* Центрируем иконку по вертикали */
+    transform: translateY(-50%); /* Сдвигаем иконку на половину ее высоты для точного центрирования */
+    width: 18px; /* Ширина иконки, можно изменить по желанию */
+    height: auto; /* Автоматическая высота для сохранения пропорций */
+    fill: #D1D1D1;
+    cursor: pointer;
+}
+
+.poisk-icon:hover {
+    fill: white;
+}
+
+input {outline: none;}
+
+.invincible {
+    width: 230px;
+    padding: 0 20px;
+    border-radius: 30px;
+    margin-top: 10px;
+    background: rgba(22, 22, 22, 0.4);
+}
+.zone {
+    width: 420px;
+}
+.off{
+    transform: scale(0);
+}
+.disoff{
+    display: none;
+}
+.linemin{
+    gap: 16px;
+}
+
+
+.header.visible:hover{
+    animation: headeranim;
+}
+@keyframes headeranim {
+    0% {
+        left: 70%;
+        top: 60%;
+        width: 112px;
+    }
+    50% {
+        left: 36%;
+        top: 44%;
+        width: 70px;
+    }
+    100% {
+        left: 70%;
+        top: 60%;
+        width: 112px;
+    }
+}
+.header-line{
+    padding: 20px 0;
+    display: flex;
+    gap: 26px;
+    align-items: center;
+    justify-content: center;
+}
+.header-line2{
+    padding-top: 16px;
+    display: flex;
+    gap: 26px;
+    align-items: center;
+}
+
+.logo-menu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.menu-icon{
+    display: flex;
+    gap: 24px;
+    align-items: flex-end;
+}
+.menu-icon-upload, .menu-icon-arhiv, .menu-icon-account{
+    stroke: #D1D1D1;
+    display: flex;
+}
+.menu-icon-upload:hover, .menu-icon-arhiv:hover, .menu-icon-account:hover {
+    stroke: #FFFFFF;
+}
+.menu-icon-upload:active,.menu-icon-arhiv:active,.menu-icon-account:active {
+    stroke: #333333;
+}
+
+.icon-background{
+    margin-top: 100px;
+    display: grid; /* Используем Flexbox */
+    align-content: center;
+    justify-items: center;
+    align-items: center; /* Центрируем по вертикали */
+    width: 1200px; /* Ширина контейнера */
+    height: 300px; /* Высота контейнера */
+    border-radius: 10px;
+    background-image: url('darstell.jpg'); /* Устанавливаем изображение фона */
+    background-size: cover; /* Растягиваем изображение, сохраняя пропорции */
+    background-color: #313131;
+    background-position: center; /* Центрируем изображение */
+    font: 400 14px "Inter", sans-serif;
+    color: white;
+}
+@media (max-width: 1220px) {
+    .icon-background{
+        margin-top: 90px;
+        width: 100%;
+    }
+}
+.icon-darstell{
+    display: flex;
+    width: auto;
+    height: auto;
+}
+.icon-background-text{
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+}
+
+
+.grid-container {
+    columns: 3 200px;
+    column-gap: 12px;
+    margin: 20px 0;
+}
+
+.searchinfo{
+    display: grid;
+    justify-items: center;
+    margin-top: 90px;
+    width: 100%;
+}
+.searchinfo h3{
+    text-align: center;
+}
+.results{
+    width: 100%;
+    display: grid;
+    justify-items: center;
+}
+.okak{
+    width: 78%;
+    margin-bottom: 6px;
+    user-select: none;
+}
+
+.imgitem {
+    margin: 6px 0;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: #313131;
+    width: 100%;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+.imagecontainer {
+    position: relative;
+    display: inline-block; /* Обеспечивает правильное поведение контейнера */
+}
+.infoimg {
+    position: absolute;
+    display: none;
+    bottom: 18px;
+    left: 10px;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    user-select: none;
+}
+.avatarimg{
+    border-radius: 20px;
+    height: 36px;
+    width: 36px;
+    object-fit: cover;
+}
+.infotext{
+    display: grid;
+    gap: 0;
+}
+.nikimg{
+    margin: 0;
+    font: 600 14px "Inter", sans-serif;
+}
+.nameimg{
+    margin: 0;
+    font: 400 12px "Inter", sans-serif;
+    padding: 0 10px 0 0;
+    overflow-wrap: break-word;
+}
+
+
+.imagecontainer:hover .infoimg{
+    display: block;
+}
+.imagecontainer:hover .imgitem{
+    filter: brightness(50%);
+}
+
+.telegram{
+    display: flex;
+    justify-content: left;
+    width: 1200px;
+    gap: 10px;
+}
+footer{
+    display: flex;
+    bottom: 0px;
+    width: 100%;
+    background: #181818;
+    justify-content: center;
+}
+.footertext{
+    display: grid;
+    align-content: space-between;
+}
+
+.error404{
+    font: 400 20px "Inter", sans-serif;
+    margin-top: 90px;
+}
+
+@media (max-width: 720px) {
+    .icon-background-text{
+        font-size: 8px;
+    }
+    .icon-darstell{
+        width: 50%;
+    }
+    .container-menu{
+        margin: 0;
+    }
+    .icon-background{
+        border-radius: 0;
+        margin-top: 76px;
+    }
+    .grid-container{
+        margin: 10px 0;
+    }
+    .header-line{
+        margin: 0 20px;
+    }
+    
+}
+@media (max-width: 500px) {
+    .icon-background{
+        height: 130px;
+    }
+    .zone{
+        width: 260px;
+    }
+}
+
