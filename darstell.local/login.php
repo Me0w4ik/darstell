@@ -132,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <img class="tgx" src="icon/krest.svg">
           <img class="tgd" src="icon/darstelltg.svg">
         </div>
-        <?php if (isset($_GET['account']) && $_GET['account'] == 'ban'){echo ('<main class="info-block appear show" id="ban">Вы были заблокированы за непристойный контент</main>');}?>      
+        <?php if (isset($_GET['account']) && $_GET['account'] == 'ban'){echo ('<main class="info-block appear show" id="ban">Вы были заблокированы за непристойный контент. Если вы считаете, что это произошло по ошибке, то свяжитесь с <a href="https://t.me/KocMoHaBT_B_KPacHoM">тех поддержкой</a></main>');}?>      
         <div class="palka2"></div>
         <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-login="Darstellbot" data-size="large" data-onauth="onTelegramAuth(user)" data-request-access="write"></script>
         <script type="text/javascript">
