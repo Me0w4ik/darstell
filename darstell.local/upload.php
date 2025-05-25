@@ -236,6 +236,7 @@ if (isset($data['addimage'])) {
                   </div>
                 <main class="info-block" id="filewin">Изображение добавлено</main>
                 <main class="info-block" id="errorsecurity">Изображение не прошло проверку на допустимый тип или размер файла (Совет: загружайте файлы типа png, jpg, jpag размером не более 30МГ)</main>
+                <main class="info-block" id="error">Произошла неизвестная ошибка, свяжитесь с <a href="https://t.me/KocMoHaBT_B_KPacHoM">тех поддержкой</a></main>
                 <div class="uploadbackgroundform">
                     <div class="input-container">
                         <input required name="name" id="name" class="input" type="name" maxlength="150" placeholder="" />
@@ -305,6 +306,8 @@ $("#formuploadimg").on("submit", function(e) {
         $('#descriptionImg').val('');
       } else if (data.includes('errorsecurity')) {
         $('#errorsecurity').addClass('show appear');
+      } else {
+        $('#error').addClass('show appear');
       }
     },
   });
