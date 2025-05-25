@@ -5,6 +5,8 @@ body{
     flex-direction: column; /* Вертикальная ориентация для меню и категорий */
     height: 100vh; /* Высота на весь экран */
     align-items: center;
+    font-family: 'inter';
+    color: white;
 }
 
 
@@ -425,6 +427,76 @@ input:-webkit-autofill {
     -webkit-box-shadow: inset 0 0 0 50px #1e1e1e !important;
     -webkit-text-fill-color: white;
 }
+
+
+
+
+
+
+.teg{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font: 300 16px "Inter", sans-serif;
+    width: 98%;
+    gap: 10px;
+}
+.switch input
+{
+  display: none;
+}
+
+.switch 
+{
+  display: inline-block;
+  width: 60px; /*=w*/
+  height: 30px; /*=h*/
+  position: relative;
+}
+
+.slider
+{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 10px;
+  box-shadow: 0 0 0 1px #777, 0 0 1px #777;
+  cursor: pointer;
+  border: 4px solid transparent;
+  overflow: hidden;
+  transition: 0.2s;
+}
+
+.slider:before
+{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #777;
+  border-radius: 6px;
+  transform: translateX(-30px); /*translateX(-(w-h))*/
+  transition: 0.2s;
+}
+
+input:checked + .slider:before
+{
+  transform: translateX(30px); /*translateX(w-h)*/
+  background-color: #7879e0;
+}
+
+input:checked + .slider
+{
+  box-shadow: 0 0 0 1px #7879e0, 0 0 1px #7879e0;
+}
+
+
+
+
+
+
 
 
 @media (max-width: 500px){
