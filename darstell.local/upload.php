@@ -298,7 +298,11 @@ $("#formuploadimg").on("submit", function(e) {
       if (data.includes('filewin')) {
         $('#filewin').addClass('show appear');
         $('.profile-avatar, .arrow.dison, .submitava.dison').addClass('disoff').removeClass('dison');
-        window.location.href = 'upload.php';
+        $('.infocub').removeClass('disoff');
+        $('#uploadimg').val('');
+        $('#preview img').remove();
+        $('#name').val('');
+        $('#descriptionImg').val('');
       } else if (data.includes('errorsecurity')) {
         $('#errorsecurity').addClass('show appear');
       }
