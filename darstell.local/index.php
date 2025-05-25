@@ -10,7 +10,7 @@
     header('Location: /search.php?search=' . urlencode($search));
     exit();
   } else {
-    $sql = "SELECT images.img, images.name, users.avatar, users.nik FROM images JOIN users ON images.iduser = users.id ORDER BY images.id DESC";
+    $sql = "SELECT images.img, images.name, users.avatar, users.nik, users.tg FROM images JOIN users ON images.iduser = users.id ORDER BY images.id DESC";
   }
   $stmt = mysqli_query($connect, $sql);
   $images = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
@@ -126,16 +126,33 @@
       const nikElement = document.createElement('p');
       nikElement.className = 'nikimg';
       nikElement.textContent = image.nik;
+      
+
 
       const nameElement = document.createElement('p');
       nameElement.className = 'nameimg';
       nameElement.textContent = image.name;
+      
+      const tgElement = document.createElement('span');
+      tgElement.className = 'usertg';
+      tgElement.innerHTML = image.tg;
+      
+      const tgplusname = document.createElement('div');
+      tgplusname.style.display = 'flex';
+      tgplusname.style.gap = '4px';
+      
+      
 
       nameElement.textContent = truncateString(image.name, 50);
 
       // Сборка элементов
-      infoText.appendChild(nikElement);
+      
+      tgplusname.appendChild(nikElement);
+      tgplusname.appendChild(tgElement);
+      
+      infoText.appendChild(tgplusname);
       infoText.appendChild(nameElement);
+
       
       infoImg.appendChild(avatarElement);
       infoImg.appendChild(infoText);
