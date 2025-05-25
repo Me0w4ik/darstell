@@ -27,13 +27,17 @@ $result = mysqli_query($connect, $sql);
 $result = mysqli_fetch_all(result: $result);
 
 $nik;
+$tgtag;
 $description;
 $avatar;
+$tg;
 
 foreach($result as $item){
   $nik = $item[1];
+  $tgtag = $item[3];
   $description = $item[4];
   $avatar = $item[5];
+  $tg = $item[6];
 }
 
 if ($nik == ''){
@@ -116,7 +120,10 @@ $images = mysqli_fetch_all($stmt1, MYSQLI_ASSOC);
           </div>
           <div class="profile2">
             <div class="profile-info">
-              <p class="profile-nik"><?= $nik ?></p>
+              <p class="profile-nik">
+                <?= $nik ?>
+                <?= $tg ?>
+              </p>
               <div class="profile-palka"></div>
               <p class="profile-opisanie"> <?= $description ?> </p>
             </div>
