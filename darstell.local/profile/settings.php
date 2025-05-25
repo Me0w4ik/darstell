@@ -1,217 +1,518 @@
-<?php
-
-session_start();
-
-require_once __DIR__ . "/../src/helpers.php";
-require "../src/EditAvatar.php";
-
-$connect = getDB();
-
-$idUser = $_SESSION['user']['id'] ?? null; // Используем null coalescing оператор для безопасного доступа
-
-if (empty($idUser)) {
-    header("Location: /login.php");
-    exit;
+body{
+    background-color: #1E1E1E;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Вертикальная ориентация для меню и категорий */
+    height: 100vh; /* Высота на весь экран */
+    align-items: center;
+    font-family: 'inter';
+    color: white;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['avatar'])) {
-    $avatar = $_FILES['avatar'];
 
-    // Проверка на ошибки загрузки
-    if ($avatar['error'] !== UPLOAD_ERR_OK) {
-        echo("Ошибка загрузки файла: " . $avatar['error']);
-    } else {
-        // Проверка безопасности файла (например, тип файла)
-        if (avatarSecurity($avatar)) {
-            loadAvatar($avatar);
-        } else {
-            echo'errorsecurity'; //Безопасность аватара не прошла проверку.
-            exit();
-        }
+.name-operation {
+    font: 100 34px "Inter", sans-serif;   
+    text-align: center;                   
+    color: #fff;
+    margin-top: 10px;
+}
+.data{
+    border-radius: 10px;
+    width: 100%;
+    height: 335px;
+    background: #151515;
+    padding: 20px;
+}
+.menu-account{
+    display: grid;
+    height: 70%;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+.form {
+    display: grid;
+    margin-top: 20px;
+    background-color: #212121;
+    border-radius: 20px;
+    padding: 24px;
+    width: 600px;
+    gap: 16px;
+    justify-items: center;
+}
+@media (max-width: 700px) {
+    .form {
+        width: auto;
+    }
+    .menu-account{
+        width: 100%;
+    }
+}
+.datat{
+    display: grid;
+    justify-items: center;
+    gap: 16px;
+    width: 100%;
+}
+.d2{
+    display: flex;
+}
+
+.title {
+    color: #eee;
+    font-size: 36px;
+    font-weight: 600;
+    margin-top: 30px;
+}
+
+.subtitle {
+    color: #eee;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.profile-avatar{
+    width: 150px;
+    height: 150px;
+    border-radius: 40%;
+    background-color: #1E1E1E;
+    cursor: pointer;
+    object-fit: cover;
+    border: 0px solid #151515;
+    box-sizing: border-box;
+    transition: all 0.2s;
+}
+.profile-avatar:hover{
+    transform: scale(1.04);
+}
+.newavatar{
+    width: 150px;
+    height: 150px;
+    background-color: #1E1E1E;
+    border-radius: 40%;
+    cursor: pointer;
+    object-fit: cover;
+    transition: all 0.2s;
+}
+.newavatar:hover{
+    transform: scale(1.04);
+}
+
+.file-upload{
+    display: flex;
+    align-items: center;
+}
+.arrow{
+    display: none;
+    margin: 0 14px;
+}
+#preview{
+    display: flex;
+}
+
+
+
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.custom-file-upload:hover {
+    background-color: #0056b3;
+}
+
+input[type="file"] {
+    display: none; /* Скрываем стандартный input */
+}
+.submitfile{
+    display: none;
+    border: 0;
+    width: auto;
+    height: auto;
+    padding: 10px 20px;
+    background: #1b1b1b;
+    color: #eee;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+
+}
+.submitfile:hover{
+    background: rgba(26, 26, 26, 0.81);
+}
+
+.wakeup{
+    display: block;
+}
+
+
+
+
+
+
+.input-container {
+    height: auto; /* Убираем фиксированную высоту, чтобы контейнер мог подстраиваться под содержимое */
+    position: relative;
+    width: 100%;
+    font: 400 14px "Inter", sans-serif;
+    border-radius: 12px;
+    border: 1px solid #1e1e1e;
+    transition: border 0.5s;
+}
+
+
+
+.input {
+    border: 1px solid #1e1e1e;
+    border-radius: 12px; /* Закругляем углы поля ввода */
+    background-color: #1e1e1e; /* Цвет фона поля ввода */
+    color: white; /* Цвет текста в поле ввода */
+    font-size: 18px; /* Размер шрифта */
+    height: 100%; /* Высота будет зависеть от содержимого */
+    min-height: 62px; /* Минимальная высота */
+    outline: 0;
+    padding: 4px 20px 0;
+    width: 100%; /* Задаем ширину 100% от родительского контейнера */
+    box-sizing: border-box; /* Учитываем отступы и границы в ширине */
+    resize: vertical; /* Позволяем изменять размер по вертикали */
+}
+.width{
+    width: 100%;
+}
+.width-text{
+    display: flex;
+    justify-content: flex-end;
+    font: 300 14px "Inter", sans-serif;
+    color: #D1D1D1;
+    margin: 0 6px 0 0;
+}
+.opisanie{
+    padding: 16px 20px 0;
+    font: 300 16px "Inter", sans-serif;
+}
+.logn{
+    padding-top: 20px;
+    background: none;
+}
+textarea{
+    font: 500 10px "Inter", sans-serif;
+}
+
+.placeholder {
+    color: #a5a5a5;
+    left: 14px;
+    top: 16px;
+    background: #212121;
+    padding: 6px;
+    border-radius: 12px;
+    pointer-events: none;
+    position: absolute;
+    transform-origin: 0 50%;
+    transform: translateY(-34px) translateX(2px) scale(0.75);
+    transition: transform 0.3s, color 0.3s, background 0.3s, padding 0.3s, border-radius 0.3s;
+}
+
+.input:focus ~ .placeholder,
+.input:not(:placeholder-shown) ~ .placeholder {
+    
+
+    color: #808097;
+    background: #212121;
+    padding: 6px;
+    border-radius: 12px;
+}
+
+.input:focus ~ .placeholder {
+    color: #7879e0;
+    background: #212121;
+    padding: 10px;
+    border-radius: 12px;
+}
+.input-container:focus-within{
+    border: 1px solid #7879e0;
+}
+
+#info1{
+    width: auto;
+    padding: 0px 10px 0px 10px;
+    top: 370px;
+    color: rgb(255, 110, 110);
+    font: 300 14px "Inter", sans-serif;
+    margin: 0px;
+    z-index: 1
+}
+
+.info-block {
+    font: 300 14px "Inter", sans-serif;;
+    display: none;
+}
+
+.info-block.show {
+    display: block; 
+}
+
+/* Анимация для появления с центра */
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
     }
 }
 
-function loadAvatar($avatar){
-    $idUser = $_SESSION['user']['id'];
-    $type = $avatar['type'];
-    $name = 'Darstell' . md5(microtime()).'.'.substr($type, strlen("image/"));
-    $dir = __DIR__ . '/avatars/';
-    if (!is_dir($dir) || !is_writable($dir)) {
-        return false;
+/* Применяем анимацию при показе */
+.info-block.appear {
+    animation: appear 0.5s ease forwards; /* Применяем анимацию появления */
+}
+#filewin{
+    color: rgb(110, 255, 110);
+}
+#errorsecurity{
+    color: rgb(255, 110, 110);
+    text-align: center;
+}
+
+
+.palka2 {
+    border-top: 1px solid rgba(130, 130, 130, 0.5); /* Создаем линию */
+    width: 95%; /* Занимаем всю ширину родительского контейнера */
+    height: 0; /* Высота линии равна нулю */
+}
+
+.submit {
+    font: 300 16px "Inter", sans-serif;
+    border-radius: 12px;
+    background-color: #00000000;
+    border: 1px solid #7879e0;
+    color: #eee;
+    cursor: pointer;
+    height: 64px;
+    text-align: center;
+    width: 100%;
+    transition: all 0.2s;
+}
+.submit:hover{
+    background-color: #1b1b1b;
+}
+
+.submitava{
+    display: none;
+    font: 300 16px "Inter", sans-serif;
+    background-color: #00000000;
+    border-radius: 12px ;
+    border: 1px solid #7879e0;
+    color: #eee;
+    cursor: pointer;
+    padding: 16px 20px;
+    text-align: center;
+    transition: all 0.2s;
+}
+.submitava:hover{
+    background-color: #1b1b1b;
+}
+
+.sub2{
+    width: 150px;
+}
+
+.submit:active {
+    background-color: rgba(26, 26, 26, 0.81) ;
+}
+
+p {
+    margin-bottom: 0;
+}
+a, a:link, a:hover, a:visited {
+    color: #ffffff;
+    text-decoration: none;
+}
+    a:hover {
+    text-decoration: none;
+}
+
+.form-funks{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+.form-ex{
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+.form-exit{
+    display: flex;
+    border-radius: 4px;
+    padding: 0px 6px 0px 6px;
+    width: auto;
+    height: 25px;
+    background: #7879e0;
+    font: 300 14px "Inter", sans-serif;
+    justify-content: center;
+    align-items: center;
+    color: black !important;
+}
+.form-exit:hover{
+    background: #3d3e6e;
+}
+
+.ister:hover{
+    background: #3d3e6e;
+}
+.form-netacc{
+    margin-top: 0px;
+    color: white;
+    font: 100 14px "Inter", sans-serif;
+}
+.form-nopassword{
+    color: white;
+    font: 100 14px "Inter", sans-serif;
+}
+.form-profile{
+    display: flex;
+    width: 60px;
+    
+    border-radius: 6px;
+    padding: 4px 6px 4px 6px;
+    font: 100 14px "Inter", sans-serif;
+    color: #D1D1D1;
+    justify-content: space-between;
+    align-items: center;
+    transition: width 0.3s ease, padding 0.3s ease;
+    
+}
+.form-profile:hover{
+    padding: 4px 16px 4px 6px;
+    width: 50px;
+}
+input {outline: none;}
+input:-webkit-autofill {
+    -webkit-box-shadow: inset 0 0 0 50px #1e1e1e !important;
+    -webkit-text-fill-color: white;
+}
+
+
+
+
+
+
+.teg{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font: 300 16px "Inter", sans-serif;
+    width: 98%;
+    gap: 10px;
+}
+.switch input
+{
+  display: none;
+}
+
+.switch 
+{
+  display: inline-block;
+  width: 60px; /*=w*/
+  height: 30px; /*=h*/
+  position: relative;
+}
+
+.slider
+{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 10px;
+  box-shadow: 0 0 0 1px #777, 0 0 1px #777;
+  cursor: pointer;
+  border: 4px solid transparent;
+  overflow: hidden;
+  transition: 0.2s;
+}
+
+.slider:before
+{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #777;
+  border-radius: 6px;
+  transform: translateX(-30px); /*translateX(-(w-h))*/
+  transition: 0.2s;
+}
+
+input:checked + .slider:before
+{
+  transform: translateX(30px); /*translateX(w-h)*/
+  background-color: #7879e0;
+}
+
+input:checked + .slider
+{
+  box-shadow: 0 0 0 1px #7879e0, 0 0 1px #7879e0;
+}
+
+
+
+
+
+
+
+
+@media (max-width: 500px){
+    .profile-avatar{
+        width: 100px;
+        height: 100px;
     }
-
-    $uploadfile = $dir.$name;
-
-    if (move_uploaded_file($avatar['tmp_name'], $uploadfile)) {
-        global $connect; // Объявляем переменную как глобальную
-        $sql = "UPDATE users SET avatar = '$name' WHERE id = '$idUser'"; // Упрощаем запрос
-
-        // Выполняем запрос
-        if (mysqli_query($connect, $sql)) {
-            return true;
-        } else {
-            // Обработка ошибки при выполнении запроса
-            echo("Ошибка обновления аватара: " . mysqli_error($connect));
-            return false;
-        }
-    } else {
-        return false; // Возвращаем false, если загрузка не удалась
+    .newavatar{
+        width: 100px;
+        height: 100px;
     }
 }
 
-
-
-$data = $_POST;
-if (isset($data['editavatarbutton'])) {
-    if (isset($_FILES['avatar'])) {
-        $avatar = $_FILES['avatar'];
-        if (avatarSecurity($avatar)) {
-            echo 'filewin';
-            loadAvatar($avatar);
-        } else {
-            //echo("Вы выбрали аватарку не того типа");
-        }
-    } else {
-        //echo("Файл аватара не был загружен.");
-    }    
+.disoff{
+    display: none;
 }
-
-$sql = "SELECT * FROM users WHERE id = '$idUser'";
-
-$result = mysqli_query(mysql: $connect, query:$sql);
-$result = mysqli_fetch_all(result: $result);
-
-foreach($result as $item){
-  $nik = $item[1];
-  $login = $item[2];
-  $password = $item[3];
-  $description = $item[4];
-  $avatar = $item[5];
+.dison{
+    display: block;
 }
-
-$info1 = '';
-$info2 = '';
-
-if (isset($_GET['error']) && $_GET['error'] === 'nickname') {
-    $info1 = '<main class="info-block show appear" id="info1">Такой ник уже существует</main>';
-}
-if (isset($_GET['error']) && $_GET['error'] === 'bad-nick') {
-    $info1 =  '<main class="info-block show appear" id="info1">В нике не должно быть плохих слов</main>';
-}
-if (isset($_GET['error']) && $_GET['error'] === 'bad-description') {
-    $info2 = '<main class="info-block show appear" id="info1">В описании не должно быть плохих слов</main>';
-}
-
-if ($nik == ''){
-    header("Location: /../src/ban.php");
-    exit();
-  }
-?>
-
-
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/css/settings.css">
-    <link rel="icon" href="/../icon/Darstell.ico" type="image/x-icon">
-    <title>Settings - Darstell</title>
-</head>
-<body>
-  <div class="menu-account">
-    <main>
-        <p class="name-operation">Настройки</p>
-        <div class="form">
-            <form class="upload-form" enctype="multipart/form-data" method="post" id="EditAvatar">
-                <input id="file-upload" type="file" accept=".jpg, .jpeg, .png" name="avatar"/>
-                <label for="file-upload" class="file-upload"><img src="avatars/<?= $avatar ?>" class="profile-avatar">
-                <svg class="arrow" width="48" height="38" viewBox="0 0 48 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M46 19L29.5 2M46 19L29.5 36M46 19L17.125 19M2 19H8.875" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                <div id="preview"></div></label>
-                <button type="submit" class="submitava" name="editavatarbutton">Изменить аватар</button>
-                <main class="info-block" id="filewin">Аватарка изменена</main>
-                <main class="info-block" id="errorsecurity">Аватар не прошёл проверку на допустимый тип или размер файла (Совет: загружайте файлы типа png, jpg, jpag размером не более 5МГ)</main>
-            </form>
-            <form class="datat d2" action="/src/EditNik.php" method="post" id="EditNik">
-                <div class="input-container" id="inputnik">
-                    <input required name="nik" id="name" class="input" type="name" maxlength="30" value="<?= $nik ?>" />
-                    <label for="name" class="placeholder">Никенйм</label>
-                </div>
-                <button type="submit" class="submit sub2">Изменить</button>
-            </form>
-            <?= $info1 ?>
-            <form class="datat" action="/src/EditProfile.php" method="post" id="EditProfile">
-                <div class="input-container">
-                    <textarea name="description" id="text" class="input opisanie" rows="4" maxlength="255"><?= $description ?></textarea>
-                    <label for="text" class="placeholder">Описание</label>
-                </div>
-                <?= $info2 ?>
-                <div class="palka2"></div>
-                <button type="submit" class="submit">Изменить описание</button>
-                <div class="form-funks">
-                <a href="/profile.php" class="form-profile">
-                    <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 7L7 13M1 7L7 1M1 7L11.5 7M17 7L14.5 7" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    Назад
-                </a>
-                <div class="form-ex">
-                    <a href="/src/logout.php" class="form-exit">Выйти из аккаунта</a>
-                </div>
-                </div>
-            </form>
-        </div>
-    </main>
-  </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-<script>
-document.getElementById('file-upload').addEventListener('change', function() {
-    const file = this.files[0];
-    const arrow = document.querySelector('.arrow');
-    const submitava = document.querySelector('.submitava');
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const img = document.createElement('img');
-            img.src = e.target.result;
-            img.className = "newavatar";
-            document.getElementById('preview').innerHTML = ''; // Очистить предыдущий просмотр
-            document.getElementById('preview').appendChild(img); // Добавить новое изображение
-            arrow.classList.add('dison');
-            submitava.classList.add('dison');
-        }
-        reader.readAsDataURL(file); // Чтение файла как URL
-    }
-});
-</script>
-
-<script>
-$("#EditAvatar").on("submit", function(e) {
-  e.preventDefault();
-  let dataSubmit = new FormData(this); // Используйте FormData для загрузки файлов
-  
-  $.ajax({
-    method: 'post',
-    dataType: 'html',
-    data: dataSubmit,
-    processData: false, // Не обрабатывайте данные
-    contentType: false, // Не устанавливайте заголовок contentType
-    success: function(data) {
-      // Обработка ответа сервера
-      if (data.includes('filewin')) {
-        $('#filewin').addClass('show appear');
-        $('.profile-avatar, .arrow.dison, .submitava.dison').addClass('disoff').removeClass('dison');
-      } else if (data.includes('errorsecurity')) {
-        $('#errorsecurity').addClass('show appear');
-      }
-    },
-  });
-});
-
-</script>
-</body>
-</html>
