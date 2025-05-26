@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             while ($row = $result->fetch_assoc()) {
               $_SESSION['user']['id'] = $row['id'];
               $idUser = $_SESSION['user']['id'];
-              $sql = "UPDATE users SET tag = '@$tgtag' WHERE id = '$idUser'"; // Упрощаем запрос
+              $sql = "UPDATE users SET tag = 'https://t.me/$tgtag' WHERE id = '$idUser'"; // Упрощаем запрос
 
               // Выполняем запрос
               if (mysqli_query($connect, $sql)) {
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     } else { //Регестрация
         // Подготовка запроса на регистрацию
-        $stmt = $connect->prepare("INSERT INTO users (nik, login, tag) VALUES (?, ?, CONCAT('@', ?))");
+        $stmt = $connect->prepare("INSERT INTO users (nik, login, tag) VALUES (?, ?, CONCAT('https://t.me/', ?))");
         $stmt->bind_param("sss", $tgname, $tgid, $tgtag); // Используем tgid как пароль
 
         // Выполнение запроса
@@ -134,6 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <?php if (isset($_GET['account']) && $_GET['account'] == 'ban'){echo ('<main class="info-block appear show" id="ban">Вы были заблокированы за непристойный контент. Если вы считаете, что это произошло по ошибке, то свяжитесь с <a href="https://t.me/KocMoHaBT_B_KPacHoM">тех поддержкой</a></main>');}?>      
         <div class="palka2"></div>
+        <p>Авторизовываясь вы соглашаетесь с <a href="https://telegra.ph/Polzovatelskoe-soglashenie-dlya-sajta-Darstellru-05-24">условиями пользовательского соглашения</a></p>
         <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-login="Darstellbot" data-size="large" data-onauth="onTelegramAuth(user)" data-request-access="write"></script>
         <script type="text/javascript">
         function onTelegramAuth(user) {
