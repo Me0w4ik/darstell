@@ -246,7 +246,7 @@ input {outline: none;}
     background-color: #313131;
     width: 100%;
     overflow: hidden;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     user-select: none;
 }
 .imagecontainer {
@@ -255,12 +255,12 @@ input {outline: none;}
 }
 .infoimg {
     position: absolute;
-    display: none;
+    opacity: 0;
     bottom: 18px;
     left: 10px;
     gap: 10px;
     cursor: pointer;
-    transition: all 0.5s ease;
+    transition: all 0.3s ease;
     user-select: none;
 }
 .avatarimg{
@@ -286,10 +286,10 @@ input {outline: none;}
 
 
 .imagecontainer:hover .infoimg{
-    display: block;
+    opacity: 1;
 }
 .imagecontainer:hover .imgitem{
-    filter: brightness(50%);
+    filter: brightness(30%);
 }
 
 .telegram{
