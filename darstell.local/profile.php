@@ -49,6 +49,24 @@ $sql1 = "SELECT `img` FROM `images` WHERE `iduser` = $idUser ORDER BY `images`.`
 $stmt1 = mysqli_query($connect, $sql1);
 $images = mysqli_fetch_all($stmt1, MYSQLI_ASSOC);
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['imgdelete'])) {
+    $imgdelete = $_POST['imgdelete'];
+
+    // Подготовленный запрос для удаления изображения
+    $stmt = $connect->prepare("DELETE FROM images WHERE img = ?");
+    $stmt->bind_param("s", $imgdelete);
+    
+    if ($stmt->execute()) {
+        echo json_encode(['success' => true]);
+    } else {
+        echo json_encode(['success' => false, 'error' => $stmt->error]);
+    }
+
+    $stmt->close();
+    $connect->close();
+    exit;
+}
+$result = $connect->query("SELECT img FROM images");
 ?>
 
 
@@ -105,6 +123,18 @@ $images = mysqli_fetch_all($stmt1, MYSQLI_ASSOC);
     </div>
   </header>
   <main>
+    <div class="deletebaketoror">
+        <div class="deleteimgCont">
+          <div id="preview"></div>
+          <p style="text-align: center; margin: 0">Вы уверены, что хотите удалить данное изображение?</p>
+          <div class="palkaHorisonta"></div>
+          <div class="oror">
+            <a style="cursor: pointer; color: #d1d1d1;" id="otmena">Отмена</a>
+            <div class="palkaVertikal"></div>
+            <a style="cursor: pointer; color: #ff6e6e;" id="imgdelete">Удалить</a>
+          </div>
+        </div>
+      </div>
     <div class="container-menu2">
       <div class="profile">
         <div class="profile-fon1">
@@ -183,11 +213,74 @@ $images = mysqli_fetch_all($stmt1, MYSQLI_ASSOC);
 
   // Добавляем каждое изображение в галерею
   images.forEach(image => {
+      const deletebaketoror = document.querySelector('.deletebaketoror');
+
+      const imageContainer = document.createElement('div');
+      imageContainer.className = 'imagecontainer';
+
       const imgElement = document.createElement('img');
       imgElement.className = 'grid-item';
       imgElement.src = '/image/' + image.img; // Путь к изображению
-      gallery.appendChild(imgElement); // Добавляем элемент в галерею
+
+      const deleteContainer = document.createElement('div');
+      deleteContainer.className = 'deleteContainer';
+
+      const deletebaket = document.createElement('img');
+      deletebaket.className = 'deletebaket';
+      deletebaket.src = '/icon/delete.svg';
+      deletebaket.id = 'deletebaket';
+
+      imageContainer.appendChild(imgElement);
+      imageContainer.appendChild(deleteContainer);
+      deleteContainer.appendChild(deletebaket);
+      gallery.appendChild(imageContainer);
+
+      // Уникальный идентификатор для контейнера
+      imageContainer.dataset.imageId = image.img; // Сохраняем уникальный идентификатор изображения
+
+      deletebaket.addEventListener('click', function() {
+          const preview = document.getElementById('preview');
+          const previewImg = document.createElement('img');
+          previewImg.style.maxWidth = '300px';
+          previewImg.style.maxHeight = '300px';
+          previewImg.style.borderRadius = '10px';
+          preview.innerHTML = '';
+          previewImg.src = imgElement.src;
+          preview.appendChild(previewImg);
+          deletebaketoror.dataset.imageContainerId = imageContainer.dataset.imageId; // Сохраняем id изображения
+          deletebaketoror.style.display = 'flex';
+      });
+
+      document.getElementById('otmena').addEventListener('click', function() {
+          deletebaketoror.style.display = 'none';
+      });
+
+      document.getElementById('imgdelete').onclick = function() {
+          const containerToRemove = [...document.querySelectorAll('.imagecontainer')].find(container => container.dataset.imageId === deletebaketoror.dataset.imageContainerId);
+          deletebaketoror.style.display = 'none';
+          fetch('', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded',
+              },
+              body: new URLSearchParams({
+                  'imgdelete': deletebaketoror.dataset.imageContainerId
+              })
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.success) {
+                  containerToRemove.remove();
+              } else {
+                  alert('Ошибка: ' + data.error);
+              }
+          })
+          .catch(error => {
+              console.error('Error:', error);
+          });
+      };
   });
+
   window.addEventListener('scroll', function() {
     
     if (window.scrollY > 120) {
