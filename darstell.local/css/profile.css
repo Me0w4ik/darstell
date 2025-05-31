@@ -5,6 +5,8 @@ body{
     flex-direction: column; /* Вертикальная ориентация для меню и категорий */
     align-items: center; /* Центрируем по горизонтали */
     height: 100vh; /* Высота на весь экран */
+    font-family: 'inter';
+    color: white;
 }
 main{
     width: 100%;
@@ -115,6 +117,7 @@ header{
     color: rgb(175, 175, 175);
 }
 .blur{
+    z-index: 1;
     backdrop-filter: blur(50px);
     background: rgb(22 22 22 / 27%);
 }
@@ -328,7 +331,11 @@ input[type="file"] {
     column-gap: 12px;
 }
 
-
+.imagecontainer {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
 .grid-item {
     margin: 6px 0;
     border-radius: 6px;
@@ -337,9 +344,66 @@ input[type="file"] {
     overflow: hidden;
     transition: all 0.3s ease;
 }
-
-.grid-item:hover {
-    filter: brightness(50%);
+.deleteContainer{
+    position: absolute;
+    display: flex;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.deletebaket{
+    width: 75px;
+    height: 72px;
+    opacity: 0;
+    user-select: none;
+    transition: all 0.3s ease;
+}
+.deletebaketoror{
+    display: none;
+    z-index: 1; 
+    width: 100%; 
+    height: 100%; 
+    position: fixed; 
+    align-items: center; 
+    justify-content: center;
+    backdrop-filter: blur(50px);
+    background: rgb(22 22 22 / 27%);
+    transform: 0.3s;
+}
+.imagecontainer:hover .grid-item{
+    filter: brightness(30%);
+}
+.imagecontainer:hover .deletebaket{
+    opacity: 1;
+}
+.deletebaket:hover{
+    transform: scale(1.1);
+}
+.deleteimgCont{
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+    padding: 20px;
+    margin: 10px;
+    background: #212121;
+    border-radius: 10px;
+}
+.oror{
+    display: flex;
+    gap: 50px;
+}
+.palkaHorisonta{
+    border-top: 1px solid rgba(130, 130, 130, 0.5);
+    width: 100%;
+    min-width: 10px;
+    height: 0;
+}
+.palkaVertikal{
+    border-left: 1px solid rgba(130, 130, 130, 0.5);
+    width: 0px;
+    height: 20px;
 }
 a{
     text-decoration: none;
@@ -375,5 +439,8 @@ a{
     }
     .container-menu{
         margin: 0;
+    }
+    .oror{
+        gap: 26px;
     }
 }
