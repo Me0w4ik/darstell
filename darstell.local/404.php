@@ -9,7 +9,7 @@ http_response_code(404);
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="css/index.css">
   <link rel="icon" href="icon/Darstell.iso" type="image/iso">
-  <title>Error404 - Darstell</title>
+  <title>404 - Darstell</title>
 </head>
 <body>
   <header>
@@ -54,6 +54,9 @@ http_response_code(404);
       </div>
     </div>
   </header>
-  <p class="error404">Ошибка 404</p>
+  <div class="error404">
+      <h3>Ошибка: 404</h3>
+      <p>Тут ничего нет</p>
+  </div>
 </body>
 </html>
