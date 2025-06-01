@@ -246,7 +246,7 @@ input {outline: none;}
     background-color: #313131;
     width: 100%;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     user-select: none;
 }
 .imagecontainer {
@@ -313,6 +313,7 @@ footer{
 .error404{
     font: 400 20px "Inter", sans-serif;
     margin-top: 90px;
+    justify-items: center;
 }
 
 @media (max-width: 720px) {
