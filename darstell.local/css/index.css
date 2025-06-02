@@ -242,7 +242,6 @@ input {outline: none;}
 .imgitem {
     margin: 6px 0;
     border-radius: 6px;
-    cursor: pointer;
     background-color: #313131;
     width: 100%;
     overflow: hidden;
@@ -251,7 +250,7 @@ input {outline: none;}
 }
 .imagecontainer {
     position: relative;
-    display: inline-block; /* Обеспечивает правильное поведение контейнера */
+    display: inline-block;
 }
 .infoimg {
     position: absolute;
@@ -283,9 +282,22 @@ input {outline: none;}
     padding: 0 10px 0 0;
     overflow-wrap: break-word;
 }
+.openImg{
+    position: absolute;
+    top: 16px;
+    right: 10px;
+    width: 50px;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.3s ease;
+    user-select: none;
+}
 
 
 .imagecontainer:hover .infoimg{
+    opacity: 1;
+}
+.imagecontainer:hover .openImg{
     opacity: 1;
 }
 .imagecontainer:hover .imgitem{
