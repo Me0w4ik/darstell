@@ -78,7 +78,7 @@
     </div>
   </div>
   <footer>
-    <p>© 2025, DARSTELL</p>
+    <p>© 2025 DARSTELL</p>
   </footer>
 <script>
   // Получаем данные изображений из PHP
@@ -110,8 +110,15 @@
 
       const imgElement = document.createElement('img');
       imgElement.className = 'imgitem';
-      imgElement.src = '/image/' + image.img; // Путь к изображению
+      imgElement.src = '/image/' + image.img;
       imgElement.alt = image.name;
+      
+      const openImgHref = document.createElement('a');
+      openImgHref.href = '/image/' + image.img;
+      
+      const openImg = document.createElement('img');
+      openImg.src = '/icon/openimage.svg';
+      openImg.className = 'openImg';
 
       const infoImg = document.createElement('div');
       infoImg.className = 'infoimg';
@@ -152,12 +159,14 @@
       
       infoText.appendChild(tgplusname);
       infoText.appendChild(nameElement);
-
+      
+      openImgHref.appendChild(openImg);
       
       infoImg.appendChild(avatarElement);
       infoImg.appendChild(infoText);
       
       imageContainer.appendChild(imgElement);
+      imageContainer.appendChild(openImgHref);
       imageContainer.appendChild(infoImg);
       
       gallery.appendChild(imageContainer);
